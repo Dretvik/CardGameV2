@@ -30,6 +30,17 @@ body {
     border-radius: 20px;
     cursor: pointer;
 }
+.singleCardDivs:hover {
+    animation: bounce 0.3s linear;
+}
+@keyframes bounce {
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
 #cardsOnTableContainer{
     display: grid;
     grid-template-columns: repeat(5, 110px);
