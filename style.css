@@ -1,0 +1,54 @@
+body {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 5%;
+    background-color: #2e2e2e;
+    color: orange;
+    user-select: none;
+}
+
+#cardGameContainerDiv {
+    border: 5px solid black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#testingStuffDiv {
+    width: 600px;
+    word-wrap: break-word;
+}
+
+.singleCardDivs {
+    border: 2px solid black;
+    width: 100px;
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: grey;
+    border-radius: 20px;
+    cursor: pointer;
+}
+#cardsOnTableContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 110px);
+    grid-gap: 10px;
+    overflow: auto;
+    padding: 30px;
+    align-items: center;
+    width: 600px;
+}
+
+#cardsOnHandContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 110px);
+    overflow: auto;
+    padding: 30px;
+    align-items: center;
+    width: 600px;
+}
+.buttonStyle1 {
+    width: 200px;
+    height: 60px;
+}
