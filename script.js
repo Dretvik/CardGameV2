@@ -17,23 +17,21 @@ hideHTMLElements('DrawCardsToHandButton');
 hideHTMLElements('cardsOnHandContainer');
 function updateView() {
     document.getElementById('app').innerHTML = /*HTML*/`
-           <div id="cardGameContainerDiv">
+            <div id="cardGameContainerDiv">
               <!-- <div id="testingStuffDiv">${deckOfCards}</div> -->
                <br>
                <div>The Table:
                <div id="cardsOnTableContainer">${cardsOnTable}</div>
                </div>
                <br>
-               <div>Your Hand:
-                   <div id="cardsOnHandContainer">${cardsOnHand}</div>
-               </div>
-               <br>
                <div id="buttonDiv">
                <button class="buttonStyle1" id="createDeckButton" onclick="createDeck()">Create Deck</button>
                <button class="buttonStyle1" id="shuffleDeckButton" onclick="shuffleDeck()">Shuffle Deck</button>
                <button class="buttonStyle1" id="DrawCardsToHandButton" onclick="drawCardsToHand()">Draw cards to hand</button>
+           </div>
+               <div>Your Hand:
+                   <div id="cardsOnHandContainer">${cardsOnHand}</div>
                </div>
-               <br>
            </div>
           `;
     addCardToTableView();

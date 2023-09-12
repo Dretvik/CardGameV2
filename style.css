@@ -2,17 +2,23 @@ body {
     display: flex;
     text-align: center;
     justify-content: center;
-    margin-top: 5%;
     background-color: #2e2e2e;
     color: orange;
     user-select: none;
 }
+/* #buttonDiv{
+    margin-top: 15px;
+    margin-left: 15px;
+} */
 
 #cardGameContainerDiv {
     border: 5px solid black;
     text-align: center;
     display: flex;
     flex-direction: column;
+    height: 880px;
+    overflow-y: auto;
+
 }
 
 #testingStuffDiv {
@@ -24,21 +30,24 @@ body {
     border: 2px solid black;
     width: 100px;
     text-align: center;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     background-color: grey;
     border-radius: 20px;
     cursor: pointer;
 }
 .singleCardDivs:hover {
-    animation: bounce 0.3s linear;
+    /* animation: bounce 0.5s linear; */
+    border: 2px solid orange;
+    transform: translateY(-5px);
+
 }
 @keyframes bounce {
-    50% {
+    /* 50% {
         transform: translateY(-15px);
-    }
+    } */
     100% {
-        transform: translateY(0px);
+        transform: translateY(-15px);
     }
 }
 #cardsOnTableContainer{
@@ -48,7 +57,8 @@ body {
     overflow: auto;
     padding: 30px;
     align-items: center;
-    width: 600px;
+    width: 650px;
+    height: 400px;
 }
 
 #cardsOnHandContainer {
@@ -58,8 +68,13 @@ body {
     padding: 30px;
     align-items: center;
     width: 600px;
+    height: 200px;
 }
 .buttonStyle1 {
     width: 200px;
-    height: 60px;
+    height: 40px;
+}
+.buttonStyle1:hover {
+    background-color: tomato;
+    font-weight: bold;
 }
