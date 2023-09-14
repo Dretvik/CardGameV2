@@ -10,7 +10,10 @@ body {
     margin-top: 15px;
     margin-left: 15px;
 } */
-
+.typeImage{
+    height: 35px;
+    width: 35px;
+}
 #cardGameContainerDiv {
     border: 5px solid black;
     text-align: center;

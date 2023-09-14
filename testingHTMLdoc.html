@@ -1,3 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kort spill med 5 kort på hånda</title>
+    <style>
+body {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #2e2e2e;
+    color: orange;
+    user-select: none;
+}
+/* #buttonDiv{
+    margin-top: 15px;
+    margin-left: 15px;
+} */
+.typeImage{
+    height: 25px;
+    width: 25px;
+}
+#cardGameContainerDiv {
+    border: 5px solid black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 880px;
+    overflow-y: auto;
+
+}
+
+#testingStuffDiv {
+    width: 600px;
+    word-wrap: break-word;
+}
+
+.singleCardDivs {
+    border: 2px solid black;
+    width: 100px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: grey;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.singleCardDivs:hover {
+    /* animation: bounce 0.5s linear; */
+    border: 2px solid orange;
+    transform: translateY(-5px);
+
+}
+@keyframes bounce {
+    /* 50% {
+        transform: translateY(-15px);
+    } */
+    100% {
+        transform: translateY(-15px);
+    }
+}
+#cardsOnTableContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 110px);
+    grid-gap: 10px;
+    overflow: auto;
+    padding: 30px;
+    align-items: center;
+    width: 650px;
+    height: 400px;
+}
+
+#cardsOnHandContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 110px);
+    overflow: auto;
+    padding: 30px;
+    align-items: center;
+    width: 600px;
+    height: 200px;
+}
+.buttonStyle1 {
+    width: 200px;
+    height: 40px;
+}
+.buttonStyle1:hover {
+    background-color: tomato;
+    font-weight: bold;
+}
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
 
 //Card Game App
 
@@ -18,6 +116,10 @@ hideHTMLElements('cardsOnHandContainer');
 function updateView() {
     document.getElementById('app').innerHTML = /*HTML*/`
             <div id="cardGameContainerDiv">
+            <img class="typeImage" src="img/hearts.png">
+            <img class="typeImage" src="img/clubs.png">
+            <img class="typeImage" src="img/diamonds.png">
+            <img class="typeImage" src="img/spades.png">
               <!-- <div id="testingStuffDiv">${deckOfCards}</div> -->
                <br>
                <div>The Table:
@@ -60,21 +162,7 @@ function updateCardsOnHandView() {
             });
             // Viser kort objekter (card)
             cardsOnHandDiv.innerHTML = cardObjects.map(cardObject => {
-                let cardHtml = `<div class="singleCardDivs" onclick="addToTable(this)">${cardObject.value}<br> of <br>${cardObject.type}`;
-                if (cardObject.type === 'Hearts') {
-                    cardHtml += `<br><img src="img/hearts.png" class="typeImage" alt="Heart">`;
-                }
-                if (cardObject.type === 'Clubs') {
-                    cardHtml += `<br><img src="img/clubs.png" class="typeImage" alt="Clubs">`;
-                }
-                if (cardObject.type === 'Diamonds') {
-                    cardHtml += `<br><img src="img/diamonds.png" class="typeImage" alt="Diamonds">`;
-                }
-                if (cardObject.type === 'Spades') {
-                    cardHtml += `<br><img src="img/spades.png" class="typeImage" alt="Spades">`;
-                }
-                cardHtml += `</div>`;
-                return cardHtml;
+                return `<div class="singleCardDivs" onclick="addToTable(this)">${cardObject.value}<br> of <br>${cardObject.type}</div>`;
             }).join('');
         }
     }, 1);
@@ -93,21 +181,7 @@ function addCardToTableView() {
                 return { value, type };
             });
             cardsOnTableDiv.innerHTML = cardObjects.map(cardObject => {
-                let cardHtml = `<div class="singleCardDivs" onclick="addToTable(this)">${cardObject.value}<br> of <br>${cardObject.type}`;
-                if (cardObject.type === 'Hearts') {
-                    cardHtml += `<br><img src="img/hearts.png" class="typeImage" alt="Heart">`;
-                }
-                if (cardObject.type === 'Clubs') {
-                    cardHtml += `<br><img src="img/clubs.png" class="typeImage" alt="Clubs">`;
-                }
-                if (cardObject.type === 'Diamonds') {
-                    cardHtml += `<br><img src="img/diamonds.png" class="typeImage" alt="Diamonds">`;
-                }
-                if (cardObject.type === 'Spades') {
-                    cardHtml += `<br><img src="img/spades.png" class="typeImage" alt="Spades">`;
-                }
-                cardHtml += `</div>`;
-                return cardHtml;
+                return `<div class="singleCardDivs" onclick="">${cardObject.value}<br> of <br>${cardObject.type}</div>`;
             }).join('');
         }
     }, 1);
@@ -124,7 +198,7 @@ function createDeck() {
                 deckOfCards.push(`${cardValue} of ${cardType}`);
             };
         };
-        hideHTMLElements('cardsOnHandContainer');
+        hideHTMLElements('cardsOnHandContainer')
         hideHTMLElements('createDeckButton');
         hideHTMLElements('DrawCardsToHandButton');
         updateView();
@@ -176,7 +250,7 @@ function addToTable(clickedCard) {
 
     if (cardIndex !== -1) {
         cardsOnHand.splice(cardIndex, 1);
-        cardsOnTable.unshift(cardValue);
+        cardsOnTable.push(cardValue);
 
         //console.log(cardsOnTable);
 
@@ -186,16 +260,7 @@ function addToTable(clickedCard) {
     }
 }
 
+    </script>
+</body>
 
-
-// Lage funksjoner som skal legges kalles fra addToTable funksjonen:
-//    - En funksjon som lar deg legge til kort på index 0 på bordet hvis kortet
-//      har samme value eller type - skal da også fjerne kortet som ligger der.
-
-//    - En funksjon som lar deg legge til kort på index 2 på bordet hvis kortet
-//      har samme value eller type - skal da også fjerne kortet som ligger der.
-
-//    - En "hjelp" funksjon med som kalles fra en knapp, slik at man kan få hint om 
-//      man kan legge oppå eksisterende kort eller må om det må et nytt ett på bordet.
-
-
+</html>
