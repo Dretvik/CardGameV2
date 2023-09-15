@@ -150,6 +150,8 @@ function shuffleDeck() {
 }
 
 function drawCardsToHand() {
+    hideHTMLElements('DrawCardsToHandButton');
+
     if (deckOfCards.length === 0 || deckOfCards.length < 0) {
         hideHTMLElements('createDeckButton');
         hideHTMLElements('shuffleDeckButton');
@@ -169,6 +171,8 @@ function drawCardsToHand() {
     } else {
         alert('You have reched the maximum hand size');
     }
+    
+
 }
 
 //Legge til kort på bordet.
@@ -202,6 +206,19 @@ function addToTable(clickedCard) {
     hideHTMLElements('createDeckButton');
     hideHTMLElements('shuffleDeckButton');
     updateView();
+    winOrLoseTheGame();
+}
+function winOrLoseTheGame() {
+    setTimeout(() => {
+        if(cardsOnHand.length <= 0){
+            if(cardsOnTable.length === 1){
+                alert('You did it, you won!');
+            } else {
+                alert('You lost the game, try again.');
+            }
+        }
+    },500);
+
 }
 
 // Skal ha med en del funksjoner til her:
