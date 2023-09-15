@@ -7,6 +7,8 @@ const cardValues = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack',
 const deckOfCards = [];
 let cardsOnHand = [];
 let cardsOnTable = [];
+let winLoseMessageDiv = document.getElementById('winLoseDiv');
+
 
 
 
@@ -17,12 +19,13 @@ hideHTMLElements('DrawCardsToHandButton');
 hideHTMLElements('cardsOnHandContainer');
 function updateView() {
     document.getElementById('app').innerHTML = /*HTML*/`
+    <div id="rulesDiv2"><h2>The goal is to end up with only one card on the table:</h2>
+    <h3>The rules are simple:</h3>
+    You can stack the same type on top of each other, or the same value.
+    Example: hearts on top of hearts, and 7s on top of 7s. You can place a card from your hand at the 
+    first index on the left in the table.</div>
             <div id="cardGameContainerDiv">
               <!-- <div id="testingStuffDiv">${deckOfCards}</div> -->
-              <h2>The goal is to end up with only one card on the table:</h2>
-              <div id="rulesDiv">You can stack the same type on top of each other, or the same value.
-              Example: hearts on top of hearts, and 7s on top of 7s. You can place a card from your hand at the 
-              first index on the left.</div>
                <br>
                <div>The Table:
                <div id="cardsOnTableContainer">${cardsOnTable}</div>
@@ -35,7 +38,9 @@ function updateView() {
                <div>${deckOfCards.length} drawable left in deck!</div>
            </div>
                <div>Your Hand:
-                   <div id="cardsOnHandContainer">${cardsOnHand}</div>
+                   <div id="cardsOnHandContainer">${cardsOnHand}
+                   <div id="winLoseDiv"></div>
+                   </div>
                </div>
            </div>
           `;
@@ -205,12 +210,13 @@ function addToTable(clickedCard) {
 
     hideHTMLElements('createDeckButton');
     hideHTMLElements('shuffleDeckButton');
-    updateView();
     winOrLoseTheGame();
+    updateView();
+    
 }
 function winOrLoseTheGame() {
     setTimeout(() => {
-        if(cardsOnHand.length <= 0){
+        if(cardsOnHand.length <= 0 && cardsOnTable.length !== 0){
             if(cardsOnTable.length === 1){
                 alert('You did it, you won!');
             } else {
@@ -218,7 +224,7 @@ function winOrLoseTheGame() {
             }
         }
     },500);
-
+    updateView();
 }
 
 // Skal ha med en del funksjoner til her:

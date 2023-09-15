@@ -87,3 +87,10 @@ body {
     position: absolute;
     word-wrap: break-word;
 }
+#rulesDiv2{
+    word-wrap: break-word;
+    width: 250px;
+    position: absolute;
+    margin-left: -280px;
+    margin-top: 300px;
+}
