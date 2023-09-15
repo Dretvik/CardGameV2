@@ -21,7 +21,8 @@ function updateView() {
               <!-- <div id="testingStuffDiv">${deckOfCards}</div> -->
               <h2>The goal is to end up with only one card on the table:</h2>
               <div id="rulesDiv">You can stack the same type on top of each other, or the same value.
-              Example: hearts on top of hearts, and 7s on top of 7s.</div>
+              Example: hearts on top of hearts, and 7s on top of 7s. You can place a card from your hand at the 
+              first index on the left.</div>
                <br>
                <div>The Table:
                <div id="cardsOnTableContainer">${cardsOnTable}</div>
