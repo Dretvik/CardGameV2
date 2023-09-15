@@ -19,6 +19,7 @@ function updateView() {
     document.getElementById('app').innerHTML = /*HTML*/`
             <div id="cardGameContainerDiv">
               <!-- <div id="testingStuffDiv">${deckOfCards}</div> -->
+              <h2>Målet med spillet er å samle alle kort i 1 bunke</h2>
                <br>
                <div>The Table:
                <div id="cardsOnTableContainer">${cardsOnTable}</div>
@@ -93,7 +94,7 @@ function addCardToTableView() {
                 return { value, type };
             });
             cardsOnTableDiv.innerHTML = cardObjects.map(cardObject => {
-                let cardHtml = `<div class="singleCardDivs" onclick="addToTable(this)">${cardObject.value}<br> of <br>${cardObject.type}`;
+                let cardHtml = `<div class="singleCardDivs" onclick="">${cardObject.value}<br> of <br>${cardObject.type}`;
                 if (cardObject.type === 'Hearts') {
                     cardHtml += `<br><img src="img/hearts.png" class="typeImage" alt="Heart">`;
                 }
@@ -171,31 +172,50 @@ function drawCardsToHand() {
 
 function addToTable(clickedCard) {
     const cardDiv = clickedCard;
-    const cardValue = cardDiv.textContent.trim();  //Husk å lese mer over .trim() funksjon fant bare ut at den virket i farta.
-    const cardIndex = cardsOnHand.findIndex(card => card === cardValue);
+    const cardValue = cardDiv.textContent.trim();
 
-    if (cardIndex !== -1) {
-        cardsOnHand.splice(cardIndex, 1);
+    // Sjekker om kortet kan plasserers på index 0.
+    if (cardsOnTable.length === 0 || cardsOnTable[0].includes(cardValue.split(' of ')[0]) || cardsOnTable[0].includes(cardValue.split(' of ')[1])) {
+        cardsOnHand = cardsOnHand.filter(card => card !== cardValue); // Fjerner kort fra hånda
+        if (cardsOnTable.length === 0) {
+            cardsOnTable.unshift(cardValue); // Hvis bordet er tomt, putt kortet på index 0
+        } else {
+            cardsOnTable[0] = cardValue; // Erstatter kort på index 0.
+        }
+    } 
+
+    // Hvis ikke de andre her er mulig, så vil jeg kunne adde kort til bordet på index 0: 
+    else if (cardsOnTable.length !== 0 || cardsOnTable[0].includes(cardValue.split(' of ')[0]) || cardsOnTable[0].includes(cardValue.split(' of ')[1])) {
+        // Fjerner kort fra hånden.
+        cardsOnHand = cardsOnHand.filter(card => card !== cardValue);
+
+        // Legger til kort på index 0.
         cardsOnTable.unshift(cardValue);
-
-        //console.log(cardsOnTable);
-
-        hideHTMLElements('createDeckButton');
-        hideHTMLElements('shuffleDeckButton');
-        updateView();
     }
+
+    hideHTMLElements('createDeckButton');
+    hideHTMLElements('shuffleDeckButton');
+    updateView();
 }
 
+// Skal ha med en del funksjoner til her:
+
+// 1.
+// Funksjon som kan legge kort og erstatte kortet som ligger på index 2 på bordet fra hånda, samme som
+// addToTable gjør nå, men for kort på index 2, hvis ikke det går skal den bare adde på index 0.
+
+// 2.
+// Skal lage funksjon for kortene på bordet, slik at hvis de deler samme type eller value så kan man legge
+// kortet fra venstre oppå(erstatte) det kortet som ligger nærmest til høyre, altså kortet med index+1 ihht det kortet
+// som blir trykket på. 
+
+// 3.
+// Skal lage funksjon for kortene på bordet, slik at hvis de deler samme type eller value så kan man legge
+// kortet fra venstre oppå(erstatte )det kortet som ligger +2 indexer høyere enn kortet som ble trykket på.
+// Altså ligger kortet på index 2, så skal man kunne flytte det til index 4 og erstatte kortet som lå der.
 
 
-// Lage funksjoner som skal legges kalles fra addToTable funksjonen:
-//    - En funksjon som lar deg legge til kort på index 0 på bordet hvis kortet
-//      har samme value eller type - skal da også fjerne kortet som ligger der.
+// Skal fler regler inn også, men starter med de over her først tenker jeg.
 
-//    - En funksjon som lar deg legge til kort på index 2 på bordet hvis kortet
-//      har samme value eller type - skal da også fjerne kortet som ligger der.
-
-//    - En "hjelp" funksjon med som kalles fra en knapp, slik at man kan få hint om 
-//      man kan legge oppå eksisterende kort eller må om det må et nytt ett på bordet.
 
 
