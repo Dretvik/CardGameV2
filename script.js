@@ -32,6 +32,7 @@ function updateView() {
                <button class="buttonStyle1" id="createDeckButton" onclick="createDeck()">Create Deck</button>
                <button class="buttonStyle1" id="shuffleDeckButton" onclick="shuffleDeck()">Shuffle Deck</button>
                <button class="buttonStyle1" id="DrawCardsToHandButton" onclick="drawCardsToHand()">Draw cards to hand</button>
+               <div>${deckOfCards.length} drawable left in deck!</div>
            </div>
                <div>Your Hand:
                    <div id="cardsOnHandContainer">${cardsOnHand}</div>
@@ -150,7 +151,6 @@ function shuffleDeck() {
 
 function drawCardsToHand() {
     if (deckOfCards.length === 0 || deckOfCards.length < 0) {
-        alert('Not enought cards left in the deck');
         hideHTMLElements('createDeckButton');
         hideHTMLElements('shuffleDeckButton');
         updateView();
@@ -194,6 +194,9 @@ function addToTable(clickedCard) {
 
         // Legger til kort på index 0.
         cardsOnTable.unshift(cardValue);
+    }
+    if (cardsOnHand.length < 5){
+        drawCardsToHand();
     }
 
     hideHTMLElements('createDeckButton');
