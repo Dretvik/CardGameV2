@@ -19,7 +19,7 @@ function updateView() {
     document.getElementById('app').innerHTML = /*HTML*/`
             <div id="cardGameContainerDiv">
               <!-- <div id="testingStuffDiv">${deckOfCards}</div> -->
-              <h2>Målet med spillet er å samle alle kort i 1 bunke</h2>
+              <h2>The goal is to end up with only one card on the table</h2>
                <br>
                <div>The Table:
                <div id="cardsOnTableContainer">${cardsOnTable}</div>
